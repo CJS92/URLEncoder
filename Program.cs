@@ -1,9 +1,13 @@
-﻿// This is another (work in progress) project for IT 2040
-// Cody Sloan
+// This is another project for IT 2040
+// Code base was taken from the 'Help' module
+// and modified to compile by me (Cody Sloan)
 // 02/22/2019
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace URLEncoder
 {
@@ -14,7 +18,8 @@ namespace URLEncoder
         static void Main(string[] args)
         {
             Console.WriteLine("URL Encoder");
-
+           
+            // gather user input
             do
             {
                 Console.Write("\nProject name: ");
@@ -24,50 +29,56 @@ namespace URLEncoder
 
                 Console.WriteLine(CreateURL(projectName, activityName));
 
-                Console.Write("Would you like to do another? (y/n): ");
+                Console.Write("\nWould you like to start over? (y/n): ");
             } while (Console.ReadLine().ToLower().Equals("y"));
         }
 
+        // create URL
         static string CreateURL(string projectName, string activityName)
         {
-            // create the URL string and return it
+            
+                string value = "";
+                Console.WriteLine("https://companyserver.com/content/{0}/files/{1}/{1}Report.pdf", projectName, activityName);
+                Console.ReadLine();
+                return value;
+           
         }
 
+        // get input
         static string GetUserInput()
         {
-            // get valid input from the user
-            string projectName = Console.ReadLine();
-            string activityName = Console.ReadLine();
-
-            // disallow strings with control characters
-            // IsValid() below is used to check if input is valid
+            string input = "";
+            do
+            {
+                input = Console.ReadLine();
+                if (IsValid(input)) return input;
+                Console.Write("The input contains invalid characters. Enter again: ");
+            } while (true);
         }
 
+        // check input and determine if it is valid
         static bool IsValid(string input)
         {
-            // check if the string is valid and does not
-            // contain control characters
-            // if valid, return true
-            // if not valid, return false
-
             foreach (char character in input.ToCharArray())
             {
                 // check each character to see if it matches any of the not-allowed control characters
-                if (character == 0x1F)
+                if (character >= 0x1F && character <= 0x7F)
                 {
-                    return (true);
+                    return false;
                 }
                 else
                 {
-                    return (false);
+                    return true;
                 }
             }
+            return true;
 
         }
 
+        // encode the input
         static string Encode(string value)
         {
-            string encodedValue = "https://companyserver.com/content/{0}/files/{1}/{1}Report.pdf";
+            string encodedValue = "";
             foreach (char character in value.ToCharArray())
             {
                 // build the encodedValue string by getting each character
@@ -79,3 +90,4 @@ namespace URLEncoder
         }
     }
 }
+
