@@ -36,9 +36,7 @@ namespace URLEncoder
         static string GetUserInput()
         {
             // get valid input from the user
-            Console.Write("\nProject name: ");
             string projectName = Console.ReadLine();
-            Console.Write("Activity name: ");
             string activityName = Console.ReadLine();
 
             // disallow strings with control characters
