@@ -1,4 +1,4 @@
-// This is another project for IT 2040
+﻿// This is another project for IT 2040
 // Code base was taken from the 'Help' module
 // and modified to compile by me (Cody Sloan)
 // 02/22/2019
@@ -18,7 +18,7 @@ namespace URLEncoder
         static void Main(string[] args)
         {
             Console.WriteLine("URL Encoder");
-           
+
             // gather user input
             do
             {
@@ -36,12 +36,12 @@ namespace URLEncoder
         // create URL
         static string CreateURL(string projectName, string activityName)
         {
-            
-                string value = "";
-                Console.WriteLine("https://companyserver.com/content/{0}/files/{1}/{1}Report.pdf", projectName, activityName);
-                Console.ReadLine();
-                return value;
-           
+
+            string value = "";
+            Console.WriteLine(String.Format(urlFormatString, projectName, activityName));
+            Console.ReadLine();
+            return value;
+
         }
 
         // get input
@@ -62,13 +62,13 @@ namespace URLEncoder
             foreach (char character in input.ToCharArray())
             {
                 // check each character to see if it matches any of the not-allowed control characters
-                if (character >= 0x1F && character <= 0x7F)
+                if ((character >= 0x00 && character <= 0x1F) || character == 0x7F)
                 {
-                    return false;
+                    return true;
                 }
                 else
                 {
-                    return true;
+                    return false;
                 }
             }
             return true;
@@ -85,6 +85,56 @@ namespace URLEncoder
                 // in the original string and adding it to encodedValue if the original is ok
                 // OR changing it to an encoded value and adding the encoded value to the string
                 // if it is one of the values that needs to change
+
+                if (character == '$')
+                {
+                    Console.WriteLine("%24");
+                }
+
+                else if (character == ' ')
+                {
+                    Console.WriteLine("%20");
+                }
+
+                else if (character == '&')
+                {
+                    Console.Write("%26");
+                }
+
+                else if (character == '+')
+                {
+                    Console.WriteLine("%2B");
+                }
+
+                else if (character == ',')
+                {
+                    Console.WriteLine("%2C");
+                }
+
+                else if (character == ':')
+                {
+                    Console.WriteLine("%3A");
+                }
+
+                else if (character == ';')
+                {
+                    Console.WriteLine("%3B");
+                }
+
+                else if (character == '=')
+                {
+                    Console.WriteLine("%3D");
+                }
+
+                else if (character == '?')
+                {
+                    Console.WriteLine("%3F");
+                }
+
+                else if (character == '@')
+                {
+                    Console.WriteLine("%40");
+                }
             }
             return encodedValue;
         }
