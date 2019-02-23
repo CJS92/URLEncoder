@@ -1,5 +1,5 @@
 ﻿// This is another project for IT 2040
-// Code base was taken from the 'Help' module
+// Codebase was taken from the 'Help' module
 // and modified to compile by me (Cody Sloan)
 // 02/22/2019
 
