@@ -55,7 +55,7 @@ namespace URLEncoder
             {
                 input = Console.ReadLine();
                 if (IsValid(input)) return input;
-                Console.Write("The input contains invalid characters. Enter again: ");
+                Console.Write("The input contains invalid characters. Try again: ");
             } while (true);
         }
 
