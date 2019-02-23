@@ -35,7 +35,7 @@ namespace URLEncoder
 
                 catch
                 {
-                    Console.WriteLine("The input contains invalid characters. Enter again: ");
+                    Console.WriteLine("The input contains invalid characters. Try again: ");
                 }
                     Console.Write("\nWould you like to start over? (y/n): ");
             } while (Console.ReadLine().ToLower().Equals("y"));
