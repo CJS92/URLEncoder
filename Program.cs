@@ -13,35 +13,38 @@ namespace URLEncoder
 {
     class Program
     {
-        static string urlFormatString = "https://companyserver.com/content/{0}/files/{1}/{1}Report.pdf";
+        readonly static string urlFormatString = "https://companyserver.com/content/{0}/files/{1}/{1}Report.pdf";
 
         static void Main(string[] args)
         {
-            Console.WriteLine("URL Encoder");
+            Console.WriteLine("URL Encoder - Not Fully Functional");
+            Console.WriteLine("-----------------------------------");
 
             // gather user input
             do
             {
-                Console.Write("\nProject name: ");
-                string projectName = GetUserInput();
-                Console.Write("Activity name: ");
-                string activityName = GetUserInput();
+                try
+                {
+                    Console.Write("\nProject name: ");
+                    string projectName = GetUserInput();
+                    Console.Write("Activity name: ");
+                    string activityName = GetUserInput();
 
-                Console.WriteLine(CreateURL(projectName, activityName));
+                    Console.WriteLine(CreateURL(projectName, activityName));
+                }
 
-                Console.Write("\nWould you like to start over? (y/n): ");
+                catch
+                {
+                    Console.WriteLine("The input contains invalid characters. Enter again: ");
+                }
+                    Console.Write("\nWould you like to start over? (y/n): ");
             } while (Console.ReadLine().ToLower().Equals("y"));
         }
 
         // create URL
         static string CreateURL(string projectName, string activityName)
         {
-
-            string value = "";
-            Console.WriteLine(String.Format(urlFormatString, projectName, activityName));
-            Console.ReadLine();
-            return value;
-
+            return String.Format(urlFormatString, projectName, activityName);
         }
 
         // get input
@@ -64,80 +67,72 @@ namespace URLEncoder
                 // check each character to see if it matches any of the not-allowed control characters
                 if ((character >= 0x00 && character <= 0x1F) || character == 0x7F)
                 {
-                    return true;
-                }
-                else
-                {
                     return false;
                 }
             }
             return true;
-
         }
 
-        // encode the input
-        static string Encode(string value)
-        {
-            string encodedValue = "";
-            foreach (char character in value.ToCharArray())
-            {
-                // build the encodedValue string by getting each character
-                // in the original string and adding it to encodedValue if the original is ok
-                // OR changing it to an encoded value and adding the encoded value to the string
-                // if it is one of the values that needs to change
+        // encode the input - NOT WORKING
+        //static string Encode(string value)
+        //{
+        //    string encodedValue = "";
+        //    foreach (char character in value.ToCharArray())
+        //    {
+        //        string characterString = character.ToString();
 
-                if (character == '$')
-                {
-                    Console.WriteLine("%24");
-                }
+        //        if (character == '$')
+        //        {
+        //            encodedValue = "%24";
+        //        }
 
-                else if (character == ' ')
-                {
-                    Console.WriteLine("%20");
-                }
+        //        else if (character == ' ')
+        //        {
+        //            encodedValue = "%20";
+        //        }
 
-                else if (character == '&')
-                {
-                    Console.Write("%26");
-                }
+        //        else if (character == '&')
+        //        {
+        //            encodedValue = "%26";
+        //        }
 
-                else if (character == '+')
-                {
-                    Console.WriteLine("%2B");
-                }
+        //        else if (character == '+')
+        //        {
+        //            encodedValue = "%2B";
+        //        }
 
-                else if (character == ',')
-                {
-                    Console.WriteLine("%2C");
-                }
+        //        else if (character == ',')
+        //        {
+        //            encodedValue = "%2C";
+        //        }
 
-                else if (character == ':')
-                {
-                    Console.WriteLine("%3A");
-                }
+        //        else if (character == ':')
+        //        {
+        //            encodedValue = "%3A";
+        //        }
 
-                else if (character == ';')
-                {
-                    Console.WriteLine("%3B");
-                }
+        //        else if (character == ';')
+        //        {
+        //            encodedValue = "%3B";
+        //        }
 
-                else if (character == '=')
-                {
-                    Console.WriteLine("%3D");
-                }
+        //        else if (character == '=')
+        //        {
+        //            encodedValue = "%3D";
+        //        }
 
-                else if (character == '?')
-                {
-                    Console.WriteLine("%3F");
-                }
+        //        else if (character == '?')
+        //        {
+        //            encodedValue = "%3F";
+        //        }
 
-                else if (character == '@')
-                {
-                    Console.WriteLine("%40");
-                }
-            }
-            return encodedValue;
-        }
+        //        else if (character == '@')
+        //        {
+        //            encodedValue = "%40";
+        //        }
+        //    }
+        //    return encodedValue;
+        //}
     }
 }
 
